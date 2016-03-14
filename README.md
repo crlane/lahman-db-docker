@@ -6,6 +6,18 @@ A docker container for the lahman database (postgres)
 
 I followed the methods in this [blog post](http://www.olschimke.eu/2012/08/07/importing-microsoft-access-mdb-into-postgresql-on-linux-postgres/) to convert the [Microsoft Access](http://seanlahman.com/files/database/lahman-mdb_2016-03-02.zip) version of the database to postgres compatible SQL. Then I put the data in a postgres based Docker container.
 
+Here is the exact process I followed. It assumes that the access database is located in the current directory with a filename of `lahman2015.mdb`
+
+Generate schema:
+```
+mdb-schema lahman2015.mdb postgres > lahman-schema.sql
+```
+
+Export database:
+```
+for table in `mdb-tables lahman2015.mdb`; do mdb-export -I postgres -q\' lahman2015.mdb $table > lahman-$table-data.sql; done
+```
+
 The tools mentioned above worked great, but there were some problems with the indices. For example, the export tool autocreated some indices that were directly contradicted by the data itself.
 
 I made the following modifications to the exported SQL:
