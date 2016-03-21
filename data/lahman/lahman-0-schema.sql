@@ -8,31 +8,31 @@
 
 SET client_encoding = 'UTF-8';
 
-CREATE TABLE "AllstarFull"
+CREATE TABLE "all_star_full"
  (
-	"playerID"			VARCHAR (18) NOT NULL, 
-	"yearID"			INTEGER NOT NULL, 
+	"player_id"			VARCHAR (18) NOT NULL, 
+	"year_id"			INTEGER NOT NULL, 
 	"gameNum"			INTEGER NOT NULL, 
-	"gameID"			VARCHAR (24), 
-	"teamID"			VARCHAR (6), 
-	"lgID"			VARCHAR (4), 
+	"game_id"			VARCHAR (24), 
+	"team_id"			VARCHAR (6), 
+	"lg_id"			VARCHAR (4), 
 	"GP"			INTEGER, 
 	"startingPos"			INTEGER
 );
 
 -- CREATE INDEXES ...
-CREATE INDEX "AllstarFull_gameID_idx" ON "AllstarFull" ("gameID");
-ALTER TABLE "AllstarFull" ADD CONSTRAINT "AllstarFull_pkey" PRIMARY KEY ("playerID", "yearID", "gameNum");
-CREATE INDEX "AllstarFull_lgID_idx" ON "AllstarFull" ("lgID");
-CREATE INDEX "AllstarFull_teamID_idx" ON "AllstarFull" ("teamID");
-CREATE INDEX "AllstarFull_playerID_idx" ON "AllstarFull" ("playerID");
+CREATE INDEX "all_star_full_game_id_idx" ON "all_star_full" ("game_id");
+ALTER TABLE "all_star_full" ADD CONSTRAINT "all_star_full_pkey" PRIMARY KEY ("player_id", "year_id", "gameNum");
+CREATE INDEX "all_star_full_lg_id_idx" ON "all_star_full" ("lg_id");
+CREATE INDEX "all_star_full_team_id_idx" ON "all_star_full" ("team_id");
+CREATE INDEX "all_star_full_player_id_idx" ON "all_star_full" ("player_id");
 
-CREATE TABLE "Appearances"
+CREATE TABLE "appearances"
  (
-	"yearID"			INTEGER NOT NULL, 
-	"teamID"			VARCHAR (6) NOT NULL, 
-	"lgID"			VARCHAR (4), 
-	"playerID"			VARCHAR (18) NOT NULL, 
+	"year_id"			INTEGER NOT NULL, 
+	"team_id"			VARCHAR (6) NOT NULL, 
+	"lg_id"			VARCHAR (4), 
+	"player_id"			VARCHAR (18) NOT NULL, 
 	"G_all"			INTEGER, 
 	"GS"			INTEGER, 
 	"G_batting"			INTEGER, 
@@ -53,55 +53,55 @@ CREATE TABLE "Appearances"
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "Appearances" ADD CONSTRAINT "Appearances_pkey" PRIMARY KEY ("yearID", "teamID", "playerID");
+ALTER TABLE "appearances" ADD CONSTRAINT "appearances_pkey" PRIMARY KEY ("year_id", "team_id", "player_id");
 
-CREATE TABLE "AwardsManagers"
+CREATE TABLE "awards_managers"
  (
-	"playerID"			VARCHAR (20) NOT NULL, 
-	"awardID"			VARCHAR (150) NOT NULL, 
-	"yearID"			INTEGER NOT NULL, 
-	"lgID"			VARCHAR (4) NOT NULL, 
+	"player_id"			VARCHAR (20) NOT NULL, 
+	"award_id"			VARCHAR (150) NOT NULL, 
+	"year_id"			INTEGER NOT NULL, 
+	"lg_id"			VARCHAR (4) NOT NULL, 
 	"tie"			VARCHAR (2), 
 	"notes"			VARCHAR (200)
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "AwardsManagers" ADD CONSTRAINT "AwardsManagers_pkey" PRIMARY KEY ("yearID", "awardID", "lgID", "playerID");
+ALTER TABLE "awards_managers" ADD CONSTRAINT "awards_managers_pkey" PRIMARY KEY ("year_id", "award_id", "lg_id", "player_id");
 
-CREATE TABLE "AwardsPlayers"
+CREATE TABLE "awards_players"
  (
-	"playerID"			VARCHAR (18) NOT NULL, 
-	"awardID"			VARCHAR (510) NOT NULL, 
-	"yearID"			INTEGER NOT NULL, 
-	"lgID"			VARCHAR (4) NOT NULL, 
+	"player_id"			VARCHAR (18) NOT NULL, 
+	"award_id"			VARCHAR (510) NOT NULL, 
+	"year_id"			INTEGER NOT NULL, 
+	"lg_id"			VARCHAR (4) NOT NULL, 
 	"tie"			VARCHAR (2), 
 	"notes"			VARCHAR (200)
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "AwardsPlayers" ADD CONSTRAINT "AwardsPlayers_pkey" PRIMARY KEY ("yearID", "awardID", "lgID", "playerID");
+ALTER TABLE "awards_players" ADD CONSTRAINT "awards_players_pkey" PRIMARY KEY ("year_id", "award_id", "lg_id", "player_id");
 
-CREATE TABLE "AwardsShareManagers"
+CREATE TABLE "awards_share_managers"
  (
-	"awardID"			VARCHAR (50) NOT NULL, 
-	"yearID"			INTEGER NOT NULL, 
-	"lgID"			VARCHAR (4) NOT NULL, 
-	"playerID"			VARCHAR (20) NOT NULL, 
+	"award_id"			VARCHAR (50) NOT NULL, 
+	"year_id"			INTEGER NOT NULL, 
+	"lg_id"			VARCHAR (4) NOT NULL, 
+	"player_id"			VARCHAR (20) NOT NULL, 
 	"pointsWon"			INTEGER, 
 	"pointsMax"			INTEGER, 
 	"votesFirst"			INTEGER
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "AwardsShareManagers" ADD CONSTRAINT "AwardsShareManagers_pkey" PRIMARY KEY ("awardID", "yearID", "lgID", "playerID");
+ALTER TABLE "awards_share_managers" ADD CONSTRAINT "awards_share_managers_pkey" PRIMARY KEY ("award_id", "year_id", "lg_id", "player_id");
 
-CREATE TABLE "Batting"
+CREATE TABLE "batting"
  (
-	"playerID"			VARCHAR (18) NOT NULL, 
-	"yearID"			INTEGER NOT NULL, 
+	"player_id"			VARCHAR (18) NOT NULL, 
+	"year_id"			INTEGER NOT NULL, 
 	"stint"			INTEGER NOT NULL, 
-	"teamID"			VARCHAR (6), 
-	"lgID"			VARCHAR (4), 
+	"team_id"			VARCHAR (6), 
+	"lg_id"			VARCHAR (4), 
 	"G"			INTEGER, 
 	"G_batting"			INTEGER, 
 	"AB"			INTEGER, 
@@ -124,18 +124,18 @@ CREATE TABLE "Batting"
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "Batting" ADD CONSTRAINT "Batting_pkey" PRIMARY KEY ("playerID", "yearID", "stint");
-CREATE INDEX "Batting_lgID_idx" ON "Batting" ("lgID");
-CREATE INDEX "Batting_teamID_idx" ON "Batting" ("teamID");
-CREATE INDEX "Batting_playerID_idx" ON "Batting" ("playerID");
+ALTER TABLE "batting" ADD CONSTRAINT "batting_pkey" PRIMARY KEY ("player_id", "year_id", "stint");
+CREATE INDEX "batting_lg_id_idx" ON "batting" ("lg_id");
+CREATE INDEX "batting_team_id_idx" ON "batting" ("team_id");
+CREATE INDEX "batting_player_id_idx" ON "batting" ("player_id");
 
-CREATE TABLE "BattingPost"
+CREATE TABLE "batting_post"
  (
-	"yearID"			INTEGER NOT NULL, 
+	"year_id"			INTEGER NOT NULL, 
 	"round"			VARCHAR (20) NOT NULL, 
-	"playerID"			VARCHAR (18) NOT NULL, 
-	"teamID"			VARCHAR (6), 
-	"lgID"			VARCHAR (4), 
+	"player_id"			VARCHAR (18) NOT NULL, 
+	"team_id"			VARCHAR (6), 
+	"lg_id"			VARCHAR (4), 
 	"G"			INTEGER, 
 	"AB"			INTEGER, 
 	"R"			INTEGER, 
@@ -156,27 +156,27 @@ CREATE TABLE "BattingPost"
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "BattingPost" ADD CONSTRAINT "BattingPost_pkey" PRIMARY KEY ("yearID", "round", "playerID");
-CREATE INDEX "BattingPost_lgID_idx" ON "BattingPost" ("lgID");
-CREATE INDEX "BattingPost_teamID_idx" ON "BattingPost" ("teamID");
-CREATE INDEX "BattingPost_playerID_idx" ON "BattingPost" ("playerID");
+ALTER TABLE "batting_post" ADD CONSTRAINT "batting_post_pkey" PRIMARY KEY ("year_id", "round", "player_id");
+CREATE INDEX "batting_post_lg_id_idx" ON "batting_post" ("lg_id");
+CREATE INDEX "batting_post_team_id_idx" ON "batting_post" ("team_id");
+CREATE INDEX "batting_post_player_id_idx" ON "batting_post" ("player_id");
 
-CREATE TABLE "CollegePlaying"
+CREATE TABLE "college_playing"
  (
-	"playerID"			VARCHAR (18) NOT NULL, 
-	"schoolID"			VARCHAR (30), 
-	"yearID"			INTEGER
+	"player_id"			VARCHAR (18) NOT NULL, 
+	"school_id"			VARCHAR (30), 
+	"year_id"			INTEGER
 );
 
 -- CREATE INDEXES ...
 
-CREATE TABLE "Fielding"
+CREATE TABLE "fielding"
  (
-	"playerID"			VARCHAR (18) NOT NULL, 
-	"yearID"			INTEGER NOT NULL, 
+	"player_id"			VARCHAR (18) NOT NULL, 
+	"year_id"			INTEGER NOT NULL, 
 	"stint"			INTEGER NOT NULL, 
-	"teamID"			VARCHAR (6), 
-	"lgID"			VARCHAR (4), 
+	"team_id"			VARCHAR (6), 
+	"lg_id"			VARCHAR (4), 
 	"POS"			VARCHAR (4) NOT NULL, 
 	"G"			INTEGER, 
 	"GS"			INTEGER, 
@@ -193,15 +193,15 @@ CREATE TABLE "Fielding"
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "Fielding" ADD CONSTRAINT "Fielding_pkey" PRIMARY KEY ("playerID", "yearID", "stint", "POS");
-CREATE INDEX "Fielding_lgID_idx" ON "Fielding" ("lgID");
-CREATE INDEX "Fielding_teamID_idx" ON "Fielding" ("teamID");
-CREATE INDEX "Fielding_playerID_idx" ON "Fielding" ("playerID");
+ALTER TABLE "fielding" ADD CONSTRAINT "fielding_pkey" PRIMARY KEY ("player_id", "year_id", "stint", "POS");
+CREATE INDEX "fielding_lg_id_idx" ON "fielding" ("lg_id");
+CREATE INDEX "fielding_team_id_idx" ON "fielding" ("team_id");
+CREATE INDEX "fielding_player_id_idx" ON "fielding" ("player_id");
 
-CREATE TABLE "FieldingOF"
+CREATE TABLE "fielding_of"
  (
-	"playerID"			VARCHAR (18) NOT NULL, 
-	"yearID"			INTEGER NOT NULL, 
+	"player_id"			VARCHAR (18) NOT NULL, 
+	"year_id"			INTEGER NOT NULL, 
 	"stint"			INTEGER NOT NULL, 
 	"Glf"			INTEGER, 
 	"Gcf"			INTEGER, 
@@ -209,14 +209,14 @@ CREATE TABLE "FieldingOF"
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "FieldingOF" ADD CONSTRAINT "FieldingOF_pkey" PRIMARY KEY ("playerID", "yearID", "stint");
+ALTER TABLE "fielding_of" ADD CONSTRAINT "fielding_of_pkey" PRIMARY KEY ("player_id", "year_id", "stint");
 
-CREATE TABLE "FieldingPost"
+CREATE TABLE "fielding_post"
  (
-	"playerID"			VARCHAR (18) NOT NULL, 
-	"yearID"			INTEGER NOT NULL, 
-	"teamID"			VARCHAR (6), 
-	"lgID"			VARCHAR (4), 
+	"player_id"			VARCHAR (18) NOT NULL, 
+	"year_id"			INTEGER NOT NULL, 
+	"team_id"			VARCHAR (6), 
+	"lg_id"			VARCHAR (4), 
 	"round"			VARCHAR (20) NOT NULL, 
 	"POS"			VARCHAR (4) NOT NULL, 
 	"G"			INTEGER, 
@@ -233,15 +233,15 @@ CREATE TABLE "FieldingPost"
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "FieldingPost" ADD CONSTRAINT "FieldingPost_pkey" PRIMARY KEY ("playerID", "yearID", "round", "POS");
-CREATE INDEX "FieldingPost_lgID_idx" ON "FieldingPost" ("lgID");
-CREATE INDEX "FieldingPost_teamID_idx" ON "FieldingPost" ("teamID");
-CREATE INDEX "FieldingPost_playerID_idx" ON "FieldingPost" ("playerID");
+ALTER TABLE "fielding_post" ADD CONSTRAINT "fielding_post_pkey" PRIMARY KEY ("player_id", "year_id", "round", "POS");
+CREATE INDEX "fielding_post_lg_id_idx" ON "fielding_post" ("lg_id");
+CREATE INDEX "fielding_post_team_id_idx" ON "fielding_post" ("team_id");
+CREATE INDEX "fielding_post_player_id_idx" ON "fielding_post" ("player_id");
 
-CREATE TABLE "HallOfFame"
+CREATE TABLE "hall_of_fame"
  (
-	"playerID"			VARCHAR (20) NOT NULL, 
-	"yearid"			INTEGER NOT NULL, 
+	"player_id"			VARCHAR (20) NOT NULL, 
+	"year_id"			INTEGER NOT NULL, 
 	"votedBy"			VARCHAR (128) NOT NULL, 
 	"ballots"			INTEGER, 
 	"needed"			INTEGER, 
@@ -252,15 +252,15 @@ CREATE TABLE "HallOfFame"
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "HallOfFame" ADD CONSTRAINT "HallOfFame_pkey" PRIMARY KEY ("playerID", "yearid", "votedBy");
-CREATE INDEX "HallOfFame_playerID_idx" ON "HallOfFame" ("playerID");
+ALTER TABLE "hall_of_fame" ADD CONSTRAINT "hall_of_fame_pkey" PRIMARY KEY ("player_id", "year_id", "votedBy");
+CREATE INDEX "hall_of_fame_player_id_idx" ON "hall_of_fame" ("player_id");
 
-CREATE TABLE "ManagersHalf"
+CREATE TABLE "managers_half"
  (
-	"playerID"			VARCHAR (20) NOT NULL, 
-	"yearID"			INTEGER NOT NULL, 
-	"teamID"			VARCHAR (6) NOT NULL, 
-	"lgID"			VARCHAR (4), 
+	"player_id"			VARCHAR (20) NOT NULL, 
+	"year_id"			INTEGER NOT NULL, 
+	"team_id"			VARCHAR (6) NOT NULL, 
+	"lg_id"			VARCHAR (4), 
 	"inseason"			INTEGER, 
 	"half"			INTEGER NOT NULL, 
 	"G"			INTEGER, 
@@ -270,52 +270,52 @@ CREATE TABLE "ManagersHalf"
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "ManagersHalf" ADD CONSTRAINT "ManagersHalf_pkey" PRIMARY KEY ("yearID", "teamID", "playerID", "half");
-CREATE INDEX "ManagersHalf_playerID_idx" ON "ManagersHalf" ("playerID");
+ALTER TABLE "managers_half" ADD CONSTRAINT "managers_half_pkey" PRIMARY KEY ("year_id", "team_id", "player_id", "half");
+CREATE INDEX "managers_half_player_id_idx" ON "managers_half" ("player_id");
 
-CREATE TABLE "Master"
+CREATE TABLE "master"
  (
-	"playerID"			VARCHAR (20), 
-	"birthYear"			INTEGER, 
-	"birthMonth"			INTEGER, 
-	"birthDay"			INTEGER, 
-	"birthCountry"			VARCHAR (100), 
-	"birthState"			VARCHAR (4), 
-	"birthCity"			VARCHAR (100), 
-	"deathYear"			INTEGER, 
-	"deathMonth"			INTEGER, 
-	"deathDay"			INTEGER, 
-	"deathCountry"			VARCHAR (100), 
-	"deathState"			VARCHAR (4), 
-	"deathCity"			VARCHAR (100), 
-	"nameFirst"			VARCHAR (100), 
-	"nameLast"			VARCHAR (100), 
-	"nameGiven"			VARCHAR (510), 
+	"player_id"			VARCHAR (20), 
+	"birth_year"			INTEGER, 
+	"birth_month"			INTEGER, 
+	"birth_day"			INTEGER, 
+	"birth_country"			VARCHAR (100), 
+	"birth_state"			VARCHAR (4), 
+	"birth_city"			VARCHAR (100), 
+	"death_year"			INTEGER, 
+	"death_month"			INTEGER, 
+	"death_day"			INTEGER, 
+	"death_country"			VARCHAR (100), 
+	"death_state"			VARCHAR (4), 
+	"death_city"			VARCHAR (100), 
+	"name_first"			VARCHAR (100), 
+	"name_last"			VARCHAR (100), 
+	"name_given"			VARCHAR (510), 
 	"weight"			INTEGER, 
 	"height"			INTEGER, 
 	"bats"			VARCHAR (2), 
 	"throws"			VARCHAR (2), 
 	"debut"			VARCHAR (20), 
-	"finalGame"			VARCHAR (20), 
-	"retroID"			VARCHAR (18), 
+	"final_game"			VARCHAR (20), 
+	"retro_id"			VARCHAR (18), 
 	"bbrefID"			VARCHAR (18)
 );
 
 -- CREATE INDEXES ...
-CREATE INDEX "Master_bbrefID_idx" ON "Master" ("bbrefID");
-CREATE INDEX "Master_playerID_idx" ON "Master" ("playerID");
-CREATE INDEX "Master_nameFirst_idx" ON "Master" ("nameFirst");
-CREATE INDEX "Master_nameGiven_idx" ON "Master" ("nameGiven");
-CREATE INDEX "Master_nameLast_idx" ON "Master" ("nameGiven");
-CREATE INDEX "Master_retroID_idx" ON "Master" ("retroID");
+CREATE INDEX "master_bbrefID_idx" ON "master" ("bbrefID");
+CREATE INDEX "master_player_id_idx" ON "master" ("player_id");
+CREATE INDEX "master_name_first_idx" ON "master" ("name_first");
+CREATE INDEX "master_name_given_idx" ON "master" ("name_given");
+CREATE INDEX "master_name_last_idx" ON "master" ("name_given");
+CREATE INDEX "master_retro_id_idx" ON "master" ("retro_id");
 
-CREATE TABLE "Pitching"
+CREATE TABLE "pitching"
  (
-	"playerID"			VARCHAR (18) NOT NULL, 
-	"yearID"			INTEGER NOT NULL, 
+	"player_id"			VARCHAR (18) NOT NULL, 
+	"year_id"			INTEGER NOT NULL, 
 	"stint"			INTEGER NOT NULL, 
-	"teamID"			VARCHAR (6), 
-	"lgID"			VARCHAR (4), 
+	"team_id"			VARCHAR (6), 
+	"lg_id"			VARCHAR (4), 
 	"W"			INTEGER, 
 	"L"			INTEGER, 
 	"G"			INTEGER, 
@@ -344,18 +344,18 @@ CREATE TABLE "Pitching"
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "Pitching" ADD CONSTRAINT "Pitching_pkey" PRIMARY KEY ("playerID", "yearID", "stint");
-CREATE INDEX "Pitching_lgID_idx" ON "Pitching" ("lgID");
-CREATE INDEX "Pitching_teamID_idx" ON "Pitching" ("teamID");
-CREATE INDEX "Pitching_playerID_idx" ON "Pitching" ("playerID");
+ALTER TABLE "pitching" ADD CONSTRAINT "pitching_pkey" PRIMARY KEY ("player_id", "year_id", "stint");
+CREATE INDEX "pitching_lg_id_idx" ON "pitching" ("lg_id");
+CREATE INDEX "pitching_team_id_idx" ON "pitching" ("team_id");
+CREATE INDEX "pitching_player_id_idx" ON "pitching" ("player_id");
 
-CREATE TABLE "PitchingPost"
+CREATE TABLE "pitching_post"
  (
-	"playerID"			VARCHAR (18) NOT NULL, 
-	"yearID"			INTEGER NOT NULL, 
+	"player_id"			VARCHAR (18) NOT NULL, 
+	"year_id"			INTEGER NOT NULL, 
 	"round"			VARCHAR (20) NOT NULL, 
-	"teamID"			VARCHAR (6), 
-	"lgID"			VARCHAR (4), 
+	"team_id"			VARCHAR (6), 
+	"lg_id"			VARCHAR (4), 
 	"W"			INTEGER, 
 	"L"			INTEGER, 
 	"G"			INTEGER, 
@@ -384,27 +384,27 @@ CREATE TABLE "PitchingPost"
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "PitchingPost" ADD CONSTRAINT "PitchingPost_pkey" PRIMARY KEY ("playerID", "yearID", "round");
-CREATE INDEX "PitchingPost_lgID_idx" ON "PitchingPost" ("lgID");
-CREATE INDEX "PitchingPost_teamID_idx" ON "PitchingPost" ("teamID");
-CREATE INDEX "PitchingPost_playerID_idx" ON "PitchingPost" ("playerID");
+ALTER TABLE "pitching_post" ADD CONSTRAINT "pitching_post_pkey" PRIMARY KEY ("player_id", "year_id", "round");
+CREATE INDEX "pitching_post_lg_id_idx" ON "pitching_post" ("lg_id");
+CREATE INDEX "pitching_post_team_id_idx" ON "pitching_post" ("team_id");
+CREATE INDEX "pitching_post_player_id_idx" ON "pitching_post" ("player_id");
 
-CREATE TABLE "Salaries"
+CREATE TABLE "salaries"
  (
-	"yearID"			INTEGER, 
-	"teamID"			VARCHAR (6), 
-	"lgID"			VARCHAR (4), 
-	"playerID"			VARCHAR (18), 
+	"year_id"			INTEGER, 
+	"team_id"			VARCHAR (6), 
+	"lg_id"			VARCHAR (4), 
+	"player_id"			VARCHAR (18), 
 	"salary"			DOUBLE PRECISION
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "Salaries" ADD CONSTRAINT "Salaries_pkey" PRIMARY KEY ("yearID", "teamID", "lgID", "playerID");
-CREATE INDEX "Salaries_playerID_idx" ON "Salaries" ("playerID");
+ALTER TABLE "salaries" ADD CONSTRAINT "salaries_pkey" PRIMARY KEY ("year_id", "team_id", "lg_id", "player_id");
+CREATE INDEX "salaries_player_id_idx" ON "salaries" ("player_id");
 
-CREATE TABLE "Schools"
+CREATE TABLE "schools"
  (
-	"schoolID"			VARCHAR (30), 
+	"school_id"			VARCHAR (30), 
 	"name_full"			VARCHAR (510), 
 	"city"			VARCHAR (110), 
 	"state"			VARCHAR (110), 
@@ -412,31 +412,31 @@ CREATE TABLE "Schools"
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "Schools" ADD CONSTRAINT "Schools_pkey" PRIMARY KEY ("schoolID");
+ALTER TABLE "schools" ADD CONSTRAINT "schools_pkey" PRIMARY KEY ("school_id");
 
-CREATE TABLE "SeriesPost"
+CREATE TABLE "series_post"
  (
-	"yearID"			INTEGER, 
+	"year_id"			INTEGER, 
 	"round"			VARCHAR (10), 
-	"teamIDwinner"			VARCHAR (6), 
-	"lgIDwinner"			VARCHAR (4), 
-	"teamIDloser"			VARCHAR (6), 
-	"lgIDloser"			VARCHAR (4), 
+	"team_idwinner"			VARCHAR (6), 
+	"lg_idwinner"			VARCHAR (4), 
+	"team_idloser"			VARCHAR (6), 
+	"lg_idloser"			VARCHAR (4), 
 	"wins"			INTEGER, 
 	"losses"			INTEGER, 
 	"ties"			INTEGER
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "SeriesPost" ADD CONSTRAINT "SeriesPost_pkey" PRIMARY KEY ("yearID", "round");
+ALTER TABLE "series_post" ADD CONSTRAINT "series_post_pkey" PRIMARY KEY ("year_id", "round");
 
-CREATE TABLE "Teams"
+CREATE TABLE "teams"
  (
-	"yearID"			INTEGER NOT NULL, 
-	"lgID"			VARCHAR (4) NOT NULL, 
-	"teamID"			VARCHAR (6) NOT NULL, 
-	"franchID"			VARCHAR (6), 
-	"divID"			VARCHAR (2), 
+	"year_id"			INTEGER NOT NULL, 
+	"lg_id"			VARCHAR (4) NOT NULL, 
+	"team_id"			VARCHAR (6) NOT NULL, 
+	"franch_id"			VARCHAR (6), 
+	"div_id"			VARCHAR (2), 
 	"Rank"			INTEGER, 
 	"G"			INTEGER, 
 	"Ghome"			INTEGER, 
@@ -477,34 +477,34 @@ CREATE TABLE "Teams"
 	"attendance"			INTEGER, 
 	"BPF"			INTEGER, 
 	"PPF"			INTEGER, 
-	"teamIDBR"			VARCHAR (6), 
-	"teamIDlahman45"			VARCHAR (6), 
-	"teamIDretro"			VARCHAR (6)
+	"team_idBR"			VARCHAR (6), 
+	"team_idlahman45"			VARCHAR (6), 
+	"team_idretro"			VARCHAR (6)
 );
 
 -- CREATE INDEXES ...
-CREATE INDEX "Teams_divID_idx" ON "Teams" ("divID");
-CREATE INDEX "Teams_franchID_idx" ON "Teams" ("franchID");
-ALTER TABLE "Teams" ADD CONSTRAINT "Teams_pkey" PRIMARY KEY ("yearID", "lgID", "teamID");
+CREATE INDEX "teams_div_id_idx" ON "teams" ("div_id");
+CREATE INDEX "teams_franch_id_idx" ON "teams" ("franch_id");
+ALTER TABLE "teams" ADD CONSTRAINT "teams_pkey" PRIMARY KEY ("year_id", "lg_id", "team_id");
 
-CREATE TABLE "TeamsFranchises"
+CREATE TABLE "teams_franchises"
  (
-	"franchID"			VARCHAR (6), 
+	"franch_id"			VARCHAR (6), 
 	"franchName"			VARCHAR (100), 
 	"active"			VARCHAR (4), 
 	"NAassoc"			VARCHAR (6)
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "TeamsFranchises" ADD CONSTRAINT "TeamsFranchises_pkey" PRIMARY KEY ("franchID");
+ALTER TABLE "teams_franchises" ADD CONSTRAINT "teams_franchises_pkey" PRIMARY KEY ("franch_id");
 
-CREATE TABLE "TeamsHalf"
+CREATE TABLE "teams_half"
  (
-	"yearID"			INTEGER, 
-	"lgID"			VARCHAR (4), 
-	"teamID"			VARCHAR (6), 
+	"year_id"			INTEGER, 
+	"lg_id"			VARCHAR (4), 
+	"team_id"			VARCHAR (6), 
 	"Half"			VARCHAR (2), 
-	"divID"			VARCHAR (2), 
+	"div_id"			VARCHAR (2), 
 	"DivWin"			VARCHAR (2), 
 	"Rank"			INTEGER, 
 	"G"			INTEGER, 
@@ -513,28 +513,28 @@ CREATE TABLE "TeamsHalf"
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "TeamsHalf" ADD CONSTRAINT "TeamsHalf_pkey" PRIMARY KEY ("yearID", "teamID", "lgID", "Half");
+ALTER TABLE "teams_half" ADD CONSTRAINT "teams_half_pkey" PRIMARY KEY ("year_id", "team_id", "lg_id", "Half");
 
-CREATE TABLE "AwardsSharePlayers"
+CREATE TABLE "awards_share_players"
  (
-	"awardID"			VARCHAR (50) NOT NULL, 
-	"yearID"			INTEGER NOT NULL, 
-	"lgID"			VARCHAR (4) NOT NULL, 
-	"playerID"			VARCHAR (18) NOT NULL, 
+	"award_id"			VARCHAR (50) NOT NULL, 
+	"year_id"			INTEGER NOT NULL, 
+	"lg_id"			VARCHAR (4) NOT NULL, 
+	"player_id"			VARCHAR (18) NOT NULL, 
 	"pointsWon"			DOUBLE PRECISION, 
 	"pointsMax"			INTEGER, 
 	"votesFirst"			DOUBLE PRECISION
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "AwardsSharePlayers" ADD CONSTRAINT "AwardsSharePlayers_pkey" PRIMARY KEY ("awardID", "yearID", "lgID", "playerID");
+ALTER TABLE "awards_share_players" ADD CONSTRAINT "awards_share_players_pkey" PRIMARY KEY ("award_id", "year_id", "lg_id", "player_id");
 
-CREATE TABLE "Managers"
+CREATE TABLE "managers"
  (
-	"playerID"			VARCHAR (20), 
-	"yearID"			INTEGER NOT NULL, 
-	"teamID"			VARCHAR (6) NOT NULL, 
-	"lgID"			VARCHAR (4), 
+	"player_id"			VARCHAR (20), 
+	"year_id"			INTEGER NOT NULL, 
+	"team_id"			VARCHAR (6) NOT NULL, 
+	"lg_id"			VARCHAR (4), 
 	"inseason"			INTEGER NOT NULL, 
 	"G"			INTEGER, 
 	"W"			INTEGER, 
@@ -544,5 +544,5 @@ CREATE TABLE "Managers"
 );
 
 -- CREATE INDEXES ...
-ALTER TABLE "Managers" ADD CONSTRAINT "Managers_pkey" PRIMARY KEY ("yearID", "teamID", "inseason");
-CREATE INDEX "Managers_managerID_idx" ON "Managers" ("playerID");
+ALTER TABLE "managers" ADD CONSTRAINT "managers_pkey" PRIMARY KEY ("year_id", "team_id", "inseason");
+CREATE INDEX "managers_manager_id_idx" ON "managers" ("player_id");

@@ -24,6 +24,7 @@ I made the following modifications to the exported SQL:
 
 - Removed indices that were contradicted by the data
 - Added some indices that are relevant to the project I'm working on.
+- Lower cased table names and added underscores to name/field names to make them play nice with `psql`.
 
 The data remain untouched.
 
